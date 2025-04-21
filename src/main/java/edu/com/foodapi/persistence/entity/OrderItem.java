@@ -17,9 +17,8 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long productId;
-    private Integer quantity;
-    private BigDecimal price;
-
+    @ManyToOne( fetch = FetchType.LAZY)
+    private Products products;
+    private Integer itemQuantity;
+    private BigDecimal itemTotalPrice;
 }

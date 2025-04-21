@@ -16,8 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "orderd")
 public class Orderd {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +28,4 @@ public class Orderd {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private List<OrderItem> items = new ArrayList<>();
-
-
 }

@@ -13,11 +13,11 @@ public interface OrderdMapper {
     OrderdMapper INSTANCE = Mappers.getMapper(OrderdMapper.class);
 
 
-    @Mapping(target = "items", source = "items") // No mapeamos items directamente, lo haremos manualmente
+    // @Mapping(target = "items", source = "items") // No mapeamos items directamente, lo haremos manualmente
     Orderd toOrderd(OrderdRequestDTO orderdRequestDTO);
 
 
-    @Mapping(target = "items", source = "items")
+    // @Mapping(target = "items", source = "items")
     OrderdReponseDTO toOrderdReponseDto (Orderd orderd);
 
 }

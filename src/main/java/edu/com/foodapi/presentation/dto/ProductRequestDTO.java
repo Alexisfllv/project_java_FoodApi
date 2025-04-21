@@ -8,5 +8,4 @@ public record ProductRequestDTO(
         String productDescription,
         BigDecimal productPrice,
         Boolean productStatus
-) {
-}
+) {}

@@ -8,16 +8,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper (componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {OrderItemMapper.class})
 public interface OrderdMapper {
-    OrderdMapper INSTANCE = Mappers.getMapper(OrderdMapper.class);
 
 
-    // @Mapping(target = "items", source = "items") // No mapeamos items directamente, lo haremos manualmente
+
     Orderd toOrderd(OrderdRequestDTO orderdRequestDTO);
 
-
-    // @Mapping(target = "items", source = "items")
     OrderdReponseDTO toOrderdReponseDto (Orderd orderd);
 
 }

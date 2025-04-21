@@ -7,7 +7,6 @@ import java.util.List;
 
 public record OrderdRequestDTO(
         String orderNo,
-        // LocalDateTime createTime,
         List<OrderdItemRequestDTO> items
 ) {
 }

@@ -4,6 +4,6 @@ import java.math.BigDecimal;
 
 public record OrderdItemRequestDTO(
         Long idproducto,
-        Integer itemQuantity
-        //BigDecimal itemTotalPrice
+        Integer itemQuantity,
+        BigDecimal itemTotalPrice
 ) {}

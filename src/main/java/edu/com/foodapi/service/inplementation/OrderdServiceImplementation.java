@@ -12,6 +12,8 @@ import edu.com.foodapi.presentation.dto.OrderdRequestDTO;
 import edu.com.foodapi.service.interfaces.OrderdService;
 import edu.com.foodapi.util.mapper.OrderdMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.ast.Or;
 import org.hibernate.query.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderdServiceImplementation implements OrderdService {
@@ -51,6 +54,11 @@ public class OrderdServiceImplementation implements OrderdService {
     @Transactional
     @Override
     public OrderdReponseDTO save(OrderdRequestDTO orderdRequestDTO) {
+        Orderd orderd =  new Orderd();
+
+        orderd.setOrderNo(orderdRequestDTO.orderNo());
+        orderd.setCreateTime(LocalDateTime.now());
+
         List<OrderItem> items = orderdRequestDTO.items()
                 .stream()
                 .map(orderdItemRequestDTO -> {
@@ -60,16 +68,20 @@ public class OrderdServiceImplementation implements OrderdService {
                     // calculo de
                     BigDecimal total =  product.getProductPrice()
                             .multiply(new BigDecimal(orderdItemRequestDTO.itemQuantity()));
-                    return new OrderItem(null, product,orderdItemRequestDTO.itemQuantity(), total);
+
+                    log.warn("id oderd "+ orderd.getId());
+                    return new OrderItem(null, product,orderdItemRequestDTO.itemQuantity(), total,orderd);
+
                 }).toList();
 
-        Orderd orderd =  new Orderd();
-
-        orderd.setOrderNo(orderdRequestDTO.orderNo());
-        orderd.setCreateTime(LocalDateTime.now());
         orderd.setItems(items);
+        // Guardar la orden completa (orden + items por Cascade.ALL)
+        Orderd savedOrder = orderdRepository.save(orderd);
 
-        return orderdMapper.toOrderdReponseDto(orderdRepository.save(orderd));
+        // Log post guardado con ID generado
+        log.info("Orden guardada con ID: " + savedOrder.getId());
 
+        // Devolver DTO de respuesta
+        return orderdMapper.toOrderdReponseDto(savedOrder);
     }
 }

@@ -12,7 +12,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper (componentModel = "spring")
 public interface ProductMapper {
 
-    OrderdMapper INSTANCE = Mappers.getMapper(OrderdMapper.class);
 
     Products toProducts(ProductRequestDTO productRequestDTO);
 

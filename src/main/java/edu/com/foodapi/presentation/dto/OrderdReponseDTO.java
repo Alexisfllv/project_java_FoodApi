@@ -8,5 +8,4 @@ public record OrderdReponseDTO(
         String orderNo,
         LocalDateTime createTime,
         List<OrderdItemResponseDTO> items
-) {
-}
+) {}

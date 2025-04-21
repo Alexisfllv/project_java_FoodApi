@@ -1,5 +1,6 @@
 package edu.com.foodapi.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +22,9 @@ public class OrderItem {
     private Products products;
     private Integer itemQuantity;
     private BigDecimal itemTotalPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    @JsonIgnore
+    private Orderd orderd;
 }

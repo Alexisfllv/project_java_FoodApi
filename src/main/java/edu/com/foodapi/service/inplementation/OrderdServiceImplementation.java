@@ -74,6 +74,14 @@ public class OrderdServiceImplementation implements OrderdService {
 
                 }).toList();
 
+        // sumar los precios de itemtotal
+        BigDecimal totalOrderPrice = items.
+                stream()
+                        .map(orderItem -> orderItem.getItemTotalPrice())
+                                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        orderd.setTotalPrice(totalOrderPrice);
+
         orderd.setItems(items);
         // Guardar la orden completa (orden + items por Cascade.ALL)
         Orderd savedOrder = orderdRepository.save(orderd);

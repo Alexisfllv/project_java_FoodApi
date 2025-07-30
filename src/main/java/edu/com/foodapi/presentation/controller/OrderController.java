@@ -31,6 +31,4 @@ public class OrderController {
     public ResponseEntity<OrderdReponseDTO> registrar(@RequestBody OrderdRequestDTO orderdRequestDTO) {
         return ResponseEntity.ok(orderdService.save(orderdRequestDTO));
     }
-
-
 }

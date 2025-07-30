@@ -10,11 +10,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", uses = {OrderItemMapper.class})
 public interface OrderdMapper {
-
-
-
     Orderd toOrderd(OrderdRequestDTO orderdRequestDTO);
-
     OrderdReponseDTO toOrderdReponseDto (Orderd orderd);
-
 }

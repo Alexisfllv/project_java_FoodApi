@@ -11,16 +11,10 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper (componentModel = "spring")
 public interface ProductMapper {
-
-
     Products toProducts(ProductRequestDTO productRequestDTO);
-
     ProductResponseDTO toProductResponseDTO (Products products);
 
-
     // update set de Entity -> Request
-
     @Mapping(target = "id", ignore = true)
     void updateFromDto(ProductRequestDTO productRequestDTO, @MappingTarget Products products);
-
 }

@@ -10,7 +10,6 @@ public interface ProductService {
 
     // listar
     List<ProductResponseDTO> listar();
-
     // buscar
     ProductResponseDTO buscarPorId(Long id);
     // registrar

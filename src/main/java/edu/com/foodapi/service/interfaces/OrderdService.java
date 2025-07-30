@@ -8,11 +8,7 @@ import java.util.List;
 
 public interface OrderdService {
 
-
-
     OrderdReponseDTO getOrderdReponseById(Long id);
-
     List<OrderdReponseDTO> findAllOrderd();
-
     OrderdReponseDTO save(OrderdRequestDTO orderdRequestDTO);
 }
